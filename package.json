@@ -1,0 +1,43 @@
+{
+  "name": "rollup-plugin-shims",
+  "version": "1.0.0",
+  "description": "Shim only used ES2015+ features in ES5 environment",
+  "module": "index.js",
+  "scripts": {
+    "test": "mocha -r chai/register-expect -r chai-autoload-plugins -R min '*.spec.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m7r/rollup-plugin-shims.git"
+  },
+  "keywords": [
+    "rollup",
+    "shims",
+    "ES2015",
+    "ES2016",
+    "ES2017"
+  ],
+  "author": "Martin R. Hufsky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/m7r/rollup-plugin-shims/issues"
+  },
+  "homepage": "https://github.com/m7r/rollup-plugin-shims#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-autoload-plugins": "^0.1.0",
+    "eslint": "^5.4.0",
+    "mocha": "^5.2.0",
+    "standard": "^12.0.1"
+  },
+  "dependencies": {
+    "acorn": "^5.7.2"
+  },
+  "peerDependencies": {
+    "rollup": ">0.60.0"
+  },
+  "engines": {
+    "node": ">8.0"
+  }
+}

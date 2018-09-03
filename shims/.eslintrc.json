@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "max-len": 0,
+    "no-extend-native": 0,
+    "no-self-compare": 0
+  }
+}
