@@ -41,7 +41,7 @@ module.exports = function (skip = []) {
      */
     transform (source) {
       simple(
-        parse(source, { sourceType: 'module', onComment: comments }),
+        parse(source, { sourceType: 'module', ecmaVersion: 9, onComment: comments }),
         { MemberExpression (node) {
           shim.add(
             get(index, 'staticMethods', node.object.name, node.property.name) ||
