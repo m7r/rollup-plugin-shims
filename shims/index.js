@@ -8,7 +8,7 @@ module.exports = {
     includes: ['es2015/string-includes.js', 'es2016/array-includes.js'],
     repeat: 'es2015/string-repeat.js',
     startsWith: 'es2015/string-starts-with.js',
-    endsWith: 'es2015/string-endsWith.js',
+    endsWith: 'es2015/string-ends-with.js',
     padStart: 'es2017/string-pad-start.js',
     padEnd: 'es2017/string-pad-end.js'
   },
