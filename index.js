@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const { promisify } = require('util')
 const { parse } = require('acorn')
-const { simple } = require('acorn/dist/walk')
+const { simple } = require('acorn-walk')
 const index = require('./shims/index.js')
 
 const flatten = (arr) => Array.prototype.concat(...arr)
