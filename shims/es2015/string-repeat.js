@@ -3,7 +3,7 @@ if (!String.prototype.repeat) {
     if (this == null) {
       throw new TypeError('can\'t convert ' + this + ' to object')
     }
-    let str = '' + this
+    var str = '' + this
     count = +count
     if (count != count) {
       count = 0
@@ -24,8 +24,8 @@ if (!String.prototype.repeat) {
     if (str.length * count >= 1 << 28) {
       throw new RangeError('repeat count must not overflow maximum string size')
     }
-    let rpt = ''
-    for (let i = 0; i < count; i++) {
+    var rpt = ''
+    for (var i = 0; i < count; i++) {
       rpt += str
     }
     return rpt

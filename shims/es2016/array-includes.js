@@ -3,13 +3,13 @@ if (!Array.prototype.includes) {
     if (this == null) {
       throw new TypeError('Array.prototype.includes called on null or undefined')
     }
-    let O = Object(this)
-    let len = parseInt(O.length, 10) || 0
+    var O = Object(this)
+    var len = parseInt(O.length, 10) || 0
     if (len === 0) {
       return false
     }
-    let n = parseInt(arguments[1], 10) || 0
-    let k
+    var n = parseInt(arguments[1], 10) || 0
+    var k
     if (n >= 0) {
       k = n
     } else {
@@ -18,7 +18,7 @@ if (!Array.prototype.includes) {
         k = 0
       }
     }
-    let currentElement
+    var currentElement
     while (k < len) {
       currentElement = O[k]
       if (searchElement === currentElement || Boolean(searchElement !== searchElement && currentElement !== currentElement)) { // NaN !== NaN

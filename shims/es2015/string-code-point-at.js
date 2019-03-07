@@ -3,10 +3,10 @@ if (!String.prototype.codePointAt) {
     if (this == null) {
       throw new TypeError()
     }
-    let string = String(this)
-    let size = string.length
+    var string = String(this)
+    var size = string.length
     // `ToInteger`
-    let index = position ? Number(position) : 0
+    var index = position ? Number(position) : 0
     if (index != index) { // better `isNaN`
       index = 0
     }
@@ -15,8 +15,8 @@ if (!String.prototype.codePointAt) {
       return undefined
     }
     // Get the first code unit
-    let first = string.charCodeAt(index)
-    let second
+    var first = string.charCodeAt(index)
+    var second
     if ( // check if it’s the start of a surrogate pair
       first >= 0xD800 && first <= 0xDBFF && // high surrogate
           size > index + 1 // there is a next code unit

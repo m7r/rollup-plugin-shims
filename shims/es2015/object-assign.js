@@ -4,10 +4,10 @@ if (!Object.assign) {
       throw new TypeError('Cannot convert undefined or null to object')
     }
     target = Object(target)
-    for (let index = 1; index < arguments.length; index++) {
-      let source = arguments[index]
+    for (var index = 1; index < arguments.length; index++) {
+      var source = arguments[index]
       if (source != null) {
-        for (let key in source) {
+        for (var key in source) {
           if (Object.prototype.hasOwnProperty.call(source, key)) {
             target[key] = source[key]
           }

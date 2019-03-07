@@ -5,38 +5,38 @@ if (!Array.prototype.copyWithin) {
       throw new TypeError('this is null or not defined')
     }
 
-    let O = Object(this)
+    var O = Object(this)
 
     // Steps 3-5.
-    let len = O.length >>> 0
+    var len = O.length >>> 0
 
     // Steps 6-8.
-    let relativeTarget = target >> 0
+    var relativeTarget = target >> 0
 
-    let to = relativeTarget < 0
+    var to = relativeTarget < 0
       ? Math.max(len + relativeTarget, 0)
       : Math.min(relativeTarget, len)
 
     // Steps 9-11.
-    let relativeStart = start >> 0
+    var relativeStart = start >> 0
 
-    let from = relativeStart < 0
+    var from = relativeStart < 0
       ? Math.max(len + relativeStart, 0)
       : Math.min(relativeStart, len)
 
     // Steps 12-14.
-    let end = arguments[2]
-    let relativeEnd = end === undefined ? len : end >> 0
+    var end = arguments[2]
+    var relativeEnd = end === undefined ? len : end >> 0
 
-    let final = relativeEnd < 0
+    var final = relativeEnd < 0
       ? Math.max(len + relativeEnd, 0)
       : Math.min(relativeEnd, len)
 
     // Step 15.
-    let count = Math.min(final - from, len - to)
+    var count = Math.min(final - from, len - to)
 
     // Steps 16-17.
-    let direction = 1
+    var direction = 1
 
     if (from < to && to < (from + count)) {
       direction = -1
