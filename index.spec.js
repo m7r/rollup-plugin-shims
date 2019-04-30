@@ -36,4 +36,10 @@ describe('rollup-plugin-shims', () => {
       run(['Object.values'], '// hint', 'a.padStart(2)', 'Object.values(b).join()', '// shims skip String.prototype.padStart')
     ).to.eventually.equal('')
   })
+
+  it('ignore object buildin functions', () => {
+    return expect(
+      run(undefined, 'a.toString()')
+    ).to.eventually.equal('')
+  })
 })

@@ -19,7 +19,7 @@ const extractId = (accum, comment) => {
   return match ? accum.concat(...match[1].split(' ').map(toId)) : accum
 }
 const isIncluded = (skip) =>
-  (name) => name && !skip.some((id) => name.includes(id))
+  (name) => typeof name === 'string' && !skip.some((id) => name.includes(id))
 const readFile = promisify(fs.readFile)
 const read = (file) =>
   readFile(path.join(__dirname, 'shims', file), 'utf-8')
