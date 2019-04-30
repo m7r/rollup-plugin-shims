@@ -18,8 +18,8 @@ const extractId = (accum, comment) => {
   const match = comment.value.match(/shims skip (.+)/)
   return match ? accum.concat(...match[1].split(' ').map(toId)) : accum
 }
-const isIncluded = (skip) =>
-  (name) => typeof name === 'string' && !skip.some((id) => name.includes(id))
+const exclude = (skipped) =>
+  (name) => typeof name === 'string' && !skipped.some((id) => name.includes(id))
 const readFile = promisify(fs.readFile)
 const read = (file) =>
   readFile(path.join(__dirname, 'shims', file), 'utf-8')
@@ -56,10 +56,10 @@ module.exports = function (skip = []) {
      * @returns {Promise<string>}
      */
     intro () {
-      const skip = comments.reduce(extractId, skipedIds)
+      const skipped = comments.reduce(extractId, skipedIds)
       return Promise.all(
         flatten(shim.values())
-          .filter(isIncluded(skip))
+          .filter(exclude(skipped))
           .sort()
           .map(read)
       ).then(join)
