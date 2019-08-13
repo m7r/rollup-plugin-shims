@@ -1,6 +1,6 @@
 if (!Array.prototype.flat || !Array.prototype.flatMap) {
   (function () {
-    var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER = Math.pow(2, 53) - 1
+    var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || Math.pow(2, 53) - 1
 
     function FlattenIntoArray (target, source, sourceLen, start, depth, mapperFunction, mapperThis) {
       var targetIndex = start
