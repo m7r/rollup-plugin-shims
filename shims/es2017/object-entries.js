@@ -1,7 +1,12 @@
 if (!Object.entries) {
-  Object.entries = function (obj) {
-    return Object.keys(Object(obj)).map(function (key) {
-      return [key, obj[key]]
-    })
-  };
+  Object.entries = function (O) {
+    var obj = Object(O)
+    var entrys = []
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key) && obj.propertyIsEnumerable(key)) {
+        entrys.push([key, obj[key]])
+      }
+    }
+    return entrys
+  }
 }
