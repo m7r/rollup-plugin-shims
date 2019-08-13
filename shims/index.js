@@ -10,7 +10,11 @@ module.exports = {
     startsWith: 'es2015/string-starts-with.js',
     endsWith: 'es2015/string-ends-with.js',
     padStart: 'es2017/string-pad-start.js',
-    padEnd: 'es2017/string-pad-end.js'
+    padEnd: 'es2017/string-pad-end.js',
+    trimStart: 'es2019/string-trim-start.js',
+    trimEnd: 'es2019/string-trim-end.js',
+    flat: 'es2019/array-flat.js',
+    flatMap: 'es2019/array-flat.js'
   },
   staticMethods: {
     Array: {
@@ -32,7 +36,8 @@ module.exports = {
       assign: 'es2015/object-assign.js',
       is: 'es2015/object-is.js',
       values: 'es2017/object-values.js',
-      entries: 'es2017/object-entries.js'
+      entries: 'es2017/object-entries.js',
+      fromEntries: 'es2019/object-from-entries.js'
     }
   }
 }
