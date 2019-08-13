@@ -1,5 +1,5 @@
 if (!String.prototype.codePointAt) {
-  String.prototype.codePointAt = function (position) {
+  String.prototype.codePointAt = function codePointAt (position) {
     if (this == null) {
       throw new TypeError()
     }

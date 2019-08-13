@@ -1,5 +1,5 @@
 if (!Object.values) {
-  Object.values = function (O) {
+  Object.values = function values (O) {
     var obj = Object(O)
     var vals = []
     for (var key in obj) {

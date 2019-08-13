@@ -1,5 +1,5 @@
 if (!Array.prototype.fill) {
-  Array.prototype.fill = function (value) {
+  Array.prototype.fill = function fill (value) {
     // Steps 1-2.
     if (this == null) {
       throw new TypeError('this is null or not defined')

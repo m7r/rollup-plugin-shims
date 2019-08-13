@@ -1,5 +1,5 @@
 if (!String.prototype.includes) {
-  String.prototype.includes = function (search, start) {
+  String.prototype.includes = function includes (search, start) {
     if (typeof start !== 'number') {
       start = 0
     }

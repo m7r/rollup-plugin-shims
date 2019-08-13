@@ -1,5 +1,5 @@
 if (!Array.of) {
-  Array.of = function () {
+  Array.of = function of () {
     return Array.prototype.slice.call(arguments)
   }
 }

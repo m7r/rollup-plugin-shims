@@ -1,5 +1,5 @@
 if (!String.prototype.repeat) {
-  String.prototype.repeat = function (count) {
+  String.prototype.repeat = function repeat (count) {
     if (this == null) {
       throw new TypeError('can\'t convert ' + this + ' to object')
     }

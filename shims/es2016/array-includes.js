@@ -1,5 +1,5 @@
 if (!Array.prototype.includes) {
-  Array.prototype.includes = function (searchElement /* , fromIndex */) {
+  Array.prototype.includes = function includes (searchElement /* , fromIndex */) {
     if (this == null) {
       throw new TypeError('Array.prototype.includes called on null or undefined')
     }

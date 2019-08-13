@@ -1,5 +1,5 @@
 if (!Number.isInteger) {
-  Number.isInteger = function (value) {
+  Number.isInteger = function isInteger (value) {
     return typeof value === 'number' &&
       isFinite(value) &&
       Math.floor(value) === value

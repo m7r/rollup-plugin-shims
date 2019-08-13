@@ -1,5 +1,5 @@
 if (!String.prototype.endsWith) {
-  String.prototype.endsWith = function (searchStr, position) {
+  String.prototype.endsWith = function endsWith (searchStr, position) {
     // This works much better than >= because
     // it compensates for NaN:
     if (!(position < this.length)) {

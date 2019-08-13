@@ -1,5 +1,5 @@
 if (!String.prototype.padEnd) {
-  String.prototype.padEnd = function (targetLength, padString) {
+  String.prototype.padEnd = function padEnd (targetLength, padString) {
     // floor if number or convert non-number to 0;
     targetLength = targetLength >> 0
     padString = String(padString || ' ')
