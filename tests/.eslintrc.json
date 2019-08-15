@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "space-unary-ops": 0
+  },
+  "globals": {
+    "assert": true,
+    "noProto": true
+  }
+}

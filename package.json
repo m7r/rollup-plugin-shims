@@ -1,9 +1,10 @@
 {
   "name": "rollup-plugin-shims",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Shim only used ES2015+ features in ES5 environment",
   "module": "index.js",
   "scripts": {
+    "build:spec": "node build-shim-spec.js > spec.js", 
     "test": "mocha -r chai/register-expect -r chai-autoload-plugins -R min '*.spec.js'"
   },
   "repository": {
@@ -29,6 +30,7 @@
     "chai-as-promised": "^7.1.1",
     "chai-autoload-plugins": "^0.1.0",
     "eslint": "^5.15.1",
+    "glob": "^7.1.4",
     "mocha": "^6.1.4",
     "standard": "^12.0.1"
   },
