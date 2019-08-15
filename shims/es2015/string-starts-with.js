@@ -1,5 +1,6 @@
 if (!String.prototype.startsWith) {
-  String.prototype.startsWith = function startsWith (searchString, position) {
-    return this.substr(position || 0, searchString.length) === searchString
+  String.prototype.startsWith = function startsWith (searchString /*, position */) {
+    var position = arguments[1] | 0
+    return this.substr(position, searchString.length) === searchString
   }
 }

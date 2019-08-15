@@ -1,12 +1,9 @@
 if (!Array.prototype.find) {
-  Array.prototype.find = function find (predicate) {
-    if (this == null) {
-      throw new TypeError('Array.prototype.find called on null or undefined')
-    }
-    if (typeof predicate !== 'function') {
+  Array.prototype.find = function find (predicate /*, thisArg */) {
+    if (!callable(predicate)) {
       throw new TypeError('predicate must be a function')
     }
-    var list = Object(this)
+    var list = coerceObject(this)
     var length = list.length >>> 0
     var thisArg = arguments[1]
     var value

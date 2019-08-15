@@ -1,13 +1,9 @@
 if (!Array.prototype.findIndex) {
-  Array.prototype.findIndex = function findIndex (predicate) {
-    'use strict'
-    if (this == null) {
-      throw new TypeError('Array.prototype.findIndex called on null or undefined')
-    }
-    if (typeof predicate !== 'function') {
+  Array.prototype.findIndex = function findIndex (predicate /*, thisArg */) {
+    if (!callable(predicate)) {
       throw new TypeError('predicate must be a function')
     }
-    var list = Object(this)
+    var list = coerceObject(this)
     var length = list.length >>> 0
     var thisArg = arguments[1]
     var value

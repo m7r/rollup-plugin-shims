@@ -1,11 +1,7 @@
 if (!Array.prototype.copyWithin) {
   Array.prototype.copyWithin = function copyWithin (target, start/* , end */) {
     // Steps 1-2.
-    if (this == null) {
-      throw new TypeError('this is null or not defined')
-    }
-
-    var O = Object(this)
+    var O = coerceObject(this)
 
     // Steps 3-5.
     var len = O.length >>> 0

@@ -1,7 +1,7 @@
 if (!String.prototype.codePointAt) {
   String.prototype.codePointAt = function codePointAt (position) {
     if (this == null) {
-      throw new TypeError()
+      throw new TypeError('called on null or undefined')
     }
     var string = String(this)
     var size = string.length

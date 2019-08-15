@@ -1,5 +1,6 @@
 if (!String.prototype.includes) {
-  String.prototype.includes = function includes (search, start) {
+  String.prototype.includes = function includes (search /*, start */) {
+    var start = arguments[1]
     if (typeof start !== 'number') {
       start = 0
     }

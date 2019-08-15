@@ -9,20 +9,22 @@ const run = (skip, ...sources) => {
   return instance.intro()
 }
 const load = id => fs.readFileSync(path.join('shims', id), 'utf-8')
+const common = load(index.common)
 const ObjectValues = load(index.staticMethods.Object.values)
 const padStart = load(index.instanceMethods.padStart)
+const wrap = (...args) => `(function(){\n${args.join('\n')}\n}())\n`
 
 describe('rollup-plugin-shims', () => {
   it('detects needed shims', () => {
     return expect(
       run(undefined, 'a.padStart(2)', 'Object.values(b).join()')
-    ).to.eventually.equal(ObjectValues + padStart)
+    ).to.eventually.equal(wrap(common, ObjectValues, padStart))
   })
 
   it('allow to skip shims by config', () => {
     return expect(
       run(['Object.values'], 'a.padStart(2) + Object.values(b).join()')
-    ).to.eventually.equal(padStart)
+    ).to.eventually.equal(wrap(padStart))
   })
 
   it('allow to skip shims by comment too', () => {

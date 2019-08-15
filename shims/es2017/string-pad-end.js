@@ -1,8 +1,9 @@
 if (!String.prototype.padEnd) {
-  String.prototype.padEnd = function padEnd (targetLength, padString) {
+  String.prototype.padEnd = function padEnd (targetLength /*, padString */) {
     // floor if number or convert non-number to 0;
     targetLength = targetLength >> 0
-    padString = String(padString || ' ')
+    var padString = String(arguments[1])
+    if (padString === 'undefined') padString = ' '
     if (this.length > targetLength) {
       return String(this)
     } else {

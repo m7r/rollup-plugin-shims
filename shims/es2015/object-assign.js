@@ -1,14 +1,11 @@
 if (!Object.assign) {
   Object.assign = function assign (target) {
-    if (target == null) {
-      throw new TypeError('Cannot convert undefined or null to object')
-    }
-    target = Object(target)
+    target = coerceObject(target)
     for (var index = 1; index < arguments.length; index++) {
       var source = arguments[index]
       if (source != null) {
         for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
+          if (has.call(source, key)) {
             target[key] = source[key]
           }
         }

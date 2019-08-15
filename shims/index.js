@@ -1,4 +1,5 @@
-module.exports = {
+const map = {
+  common: 'common.js',
   instanceMethods: {
     codePointAt: 'es2015/string-code-point-at.js',
     copyWithin: 'es2015/array-copy-within.js',
@@ -23,11 +24,11 @@ module.exports = {
     },
     Number: {
       EPSILON: 'es2015/number-epsilon.js',
-      MAX_SAFE_INTEGER: 'es2015/number-max-save-integer.js',
-      MIN_SAFE_INTEGER: 'es2015/number-min-save-integer.js',
+      MAX_SAFE_INTEGER: 'es2015/number-max-safe-integer.js',
+      MIN_SAFE_INTEGER: 'es2015/number-min-safe-integer.js',
       isNaN: 'es2015/number-is-nan.js',
       isInteger: 'es2015/number-is-integer.js',
-      isSaveInteger: 'es2015/number-is-save-integer.js',
+      isSafeInteger: 'es2015/number-is-safe-integer.js',
       isFinite: 'es2015/number-is-finite.js',
       parseFloat: 'es2015/number-parse-float.js',
       parseInt: 'es2015/number-parse-int.js'
@@ -41,3 +42,27 @@ module.exports = {
     }
   }
 }
+
+const index = (accum, key) => {
+  accum[key] = true
+  return accum
+}
+
+map.needsCommon = [
+  map.instanceMethods.copyWithin,
+  map.instanceMethods.fill,
+  map.instanceMethods.find,
+  map.instanceMethods.findIndex,
+  map.instanceMethods.includes,
+  map.instanceMethods.flat,
+  map.instanceMethods.flatMap,
+  map.staticMethods.Array.from,
+  map.staticMethods.Number.MAX_SAFE_INTEGER,
+  map.staticMethods.Number.MIN_SAFE_INTEGER,
+  map.staticMethods.Number.isSafeInteger,
+  map.staticMethods.Object.assign,
+  map.staticMethods.Object.values,
+  map.staticMethods.Object.entries
+].reduce(index, {})
+
+module.exports = map

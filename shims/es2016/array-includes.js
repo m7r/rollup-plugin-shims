@@ -1,9 +1,6 @@
 if (!Array.prototype.includes) {
   Array.prototype.includes = function includes (searchElement /* , fromIndex */) {
-    if (this == null) {
-      throw new TypeError('Array.prototype.includes called on null or undefined')
-    }
-    var O = Object(this)
+    var O = coerceObject(this)
     var len = parseInt(O.length, 10) || 0
     if (len === 0) {
       return false

@@ -5,10 +5,12 @@ const { parse } = require('acorn')
 const { simple } = require('acorn-walk')
 const index = require('./shims/index.js')
 
-const flatten = (arr) => Array.prototype.concat(...arr)
 const getProp = (obj, key) => obj != null ? obj[key] : obj
 const get = (obj, ...args) => args.reduce(getProp, obj)
-const join = (arr) => arr.join('')
+const toArray = (obj) => Array.isArray(obj) ? obj : [obj]
+const wrap = (arr) => arr.length
+  ? `(function(){\n${arr.join('\n')}\n}())\n`
+  : ''
 const toId = (str) => String(str)
   .replace(/NaN/g, 'nan')
   .replace(/(.prototype.|[._])/g, '-')
@@ -20,6 +22,7 @@ const extractId = (accum, comment) => {
 }
 const exclude = (skipped) =>
   (name) => typeof name === 'string' && !skipped.some((id) => name.includes(id))
+const needsCommon = (key) => index.needsCommon[key]
 const readFile = promisify(fs.readFile)
 const read = (file) =>
   readFile(path.join(__dirname, 'shims', file), 'utf-8')
@@ -30,6 +33,7 @@ const read = (file) =>
  */
 module.exports = function (skip = []) {
   const shim = new Set()
+  const add = shim.add.bind(shim)
   const skipedIds = skip.map(toId)
   const comments = []
 
@@ -43,10 +47,10 @@ module.exports = function (skip = []) {
       simple(
         parse(source, { sourceType: 'module', ecmaVersion: 9, onComment: comments }),
         { MemberExpression (node) {
-          shim.add(
+          toArray(
             get(index, 'staticMethods', node.object.name, node.property.name) ||
             get(index, 'instanceMethods', node.property.name)
-          )
+          ).forEach(add)
         } }
       )
       return null
@@ -57,12 +61,11 @@ module.exports = function (skip = []) {
      */
     intro () {
       const skipped = comments.reduce(extractId, skipedIds)
-      return Promise.all(
-        flatten(shim.values())
-          .filter(exclude(skipped))
-          .sort()
-          .map(read)
-      ).then(join)
+      const shims = Array.from(shim.values())
+        .filter(exclude(skipped))
+        .sort()
+      if (shims.some(needsCommon)) shims.unshift(index.common)
+      return Promise.all(shims.map(read)).then(wrap)
     }
   }
 }
