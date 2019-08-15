@@ -43,6 +43,7 @@ if (!Array.prototype.flat || !Array.prototype.flatMap) {
     }
 
     Array.prototype.flat = function flat () {
+      if (this == null) throw new TypeError('Cannot convert undefined or null to object')
       var O = Object(this)
       var sourceLen = toLength(O.length)
 
@@ -57,6 +58,7 @@ if (!Array.prototype.flat || !Array.prototype.flatMap) {
     }
 
     Array.prototype.flatMap = function flatMap (callbackfn) {
+      if (this == null) throw new TypeError('Cannot convert undefined or null to object')
       var O = Object(this)
       var sourceLen = toLength(O.length)
 
