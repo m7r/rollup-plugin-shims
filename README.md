@@ -30,8 +30,10 @@ export default {
     shims(
       // optional config
       {
-        skip: ['array.includes'],  // optional: exclude a not required instance method
-        add: ['string.replaceAll'] // optional: add a method even if not used in code
+        skip: ['array.includes'],   // optional: exclude a not required instance method
+        add: ['string.replaceAll'], // optional: add a method even if not used in code
+        output: 'dist/shim.js',     // optional: write shims to separate file [Default: null]
+        prepend: true,              // optional: prepend shims to rollup output [Default: !output]
       }
     )
   ]

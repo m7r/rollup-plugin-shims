@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const { promisify } = require('util')
-const { simple } = require('acorn-walk')
+const walk = require('acorn-walk')
 const index = require('./shims/index.js')
 
 const getProp = (obj, key) => obj != null ? obj[key] : obj
@@ -19,15 +18,16 @@ const exclude = (skipped) =>
   (name) => typeof name === 'string' && !skipped.some((id) => name.includes(id))
 const getFrom = (items) => (id) => items.find((name) => name.includes(id))
 const needsCommon = (key) => index.needsCommon[key]
-const readFile = promisify(fs.readFile)
 const read = (file) =>
-  readFile(path.join(__dirname, 'shims', file), 'utf-8')
+  fs.promises.readFile(path.join(__dirname, 'shims', file), 'utf-8')
+const write = (file, text) =>
+  fs.promises.writeFile(file, text, 'utf-8')
 
 /**
  * Prepend bundle with shims for used functions
  * @param {string[]?} skip Omit shim for this methods
  */
-module.exports = function ({ skip = [], add = [], onlyShim = false } = {}) {
+module.exports = function ({ skip = [], add = [], output = null, prepend = !output } = {}) {
   const shim = new Set()
   const addShim = shim.add.bind(shim)
 
@@ -38,7 +38,7 @@ module.exports = function ({ skip = [], add = [], onlyShim = false } = {}) {
      * @return {null}
      */
     moduleParsed (moduleInfo) {
-      simple(
+      walk.simple(
         moduleInfo.ast,
         { MemberExpression (node) {
           toArray(
@@ -53,13 +53,15 @@ module.exports = function ({ skip = [], add = [], onlyShim = false } = {}) {
      * Load shims and prepend to bundle
      * @returns {Promise<string>}
      */
-    intro () {
+    async intro () {
       add.map(toId).map((getFrom(index.files))).forEach(addShim)
       const shims = Array.from(shim.values())
         .filter(exclude(skip.map(toId)))
         .sort()
       if (shims.some(needsCommon)) shims.unshift(index.common)
-      return Promise.all(shims.map(read)).then(wrap)
+      const code = wrap(await Promise.all(shims.map(read)))
+      if (output) await write(output, code)
+      return prepend ? code : null
     }
   }
 }

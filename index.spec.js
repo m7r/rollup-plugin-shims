@@ -16,7 +16,7 @@ const run = async (option, ...sources) => {
   intro.parts = parts
   return intro
 }
-const load = id => fs.readFileSync(path.join('shims', id), 'utf-8')
+const load = id => fs.readFileSync(path.resolve('shims', id), 'utf-8')
 const common = load(index.common)
 const ObjectValues = load(index.staticMethods.Object.values)
 const padStart = load(index.instanceMethods.padStart)
@@ -45,5 +45,21 @@ describe('rollup-plugin-shims', () => {
     return expect(
       run(undefined, 'a.toString()')
     ).to.eventually.equal('')
+  })
+
+  it('allow to output to other file', async () => {
+    const output = '/tmp/shim.js'
+    expect(
+      await run({ output }, 'a.padStart(2)')
+    ).to.equal(null)
+    expect(load(output)).to.equal(wrap(padStart))
+  })
+
+  it('allow to output to other file and prepend', async () => {
+    const output = '/tmp/shim.js'
+    expect(
+      await run({ output, prepend: true }, 'a.padStart(2)')
+    ).to.equal(wrap(padStart))
+    expect(load(output)).to.equal(wrap(padStart))
   })
 })
