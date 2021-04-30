@@ -53,5 +53,11 @@ Please consider to use a more profound soltution like core-js.
   
   - Object.getOwnPropertyDescriptors()
 
+#### ES2020
+
+  - import()
+  - BigInt
+  - globalThis
+
 ### License
 MIT

@@ -15,7 +15,9 @@ const map = {
     trimStart: 'es2019/string-trim-start.js',
     trimEnd: 'es2019/string-trim-end.js',
     flat: 'es2019/array-flat.js',
-    flatMap: 'es2019/array-flat.js'
+    flatMap: 'es2019/array-flat.js',
+    matchAll: 'es2020/string-match-all.js',
+    replaceAll: 'es2021/string-replace-all.js'
   },
   staticMethods: {
     Array: {
@@ -56,6 +58,8 @@ map.needsCommon = [
   map.instanceMethods.includes,
   map.instanceMethods.flat,
   map.instanceMethods.flatMap,
+  map.instanceMethods.matchAll,
+  map.instanceMethods.replaceAll,
   map.staticMethods.Array.from,
   map.staticMethods.Number.MAX_SAFE_INTEGER,
   map.staticMethods.Number.MIN_SAFE_INTEGER,

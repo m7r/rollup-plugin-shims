@@ -13,6 +13,6 @@ function coerceObject (obj) {
   return Object(obj)
 }
 
-var toLength = function toLength (len) {
+function toLength (len) {
   return len > MAX_SAFE_INTEGER ? MAX_SAFE_INTEGER : len | 0
 }
