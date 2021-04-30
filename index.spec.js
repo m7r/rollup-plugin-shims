@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const plugin = require('./index')
 const index = require('./shims')
+const { terser } = require('rollup-plugin-terser')
 const { parse } = require('acorn')
 
 const prepare = (moduleParsed) => (source) => {
@@ -9,8 +10,9 @@ const prepare = (moduleParsed) => (source) => {
   return moduleParsed({ ast })
 }
 
-const run = async (option, ...sources) => {
+const run = async (option = {}, ...sources) => {
   const instance = plugin(option)
+  instance.buildStart({ plugins: option.plugins || [] })
   const parts = sources.map(prepare(instance.moduleParsed))
   const intro = instance.intro()
   intro.parts = parts
@@ -61,5 +63,12 @@ describe('rollup-plugin-shims', () => {
       await run({ output, prepend: true }, 'a.padStart(2)')
     ).to.equal(wrap(padStart))
     expect(load(output)).to.equal(wrap(padStart))
+  })
+
+  it('allow to optimize output with terser', async () => {
+    const output = '/tmp/shim.js'
+    const t = terser()
+    await run({ output, plugins: [t] }, 'a.padStart(2)')
+    expect(load(output).includes('\n')).to.equal(false)
   })
 })

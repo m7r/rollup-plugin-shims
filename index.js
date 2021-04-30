@@ -30,8 +30,20 @@ const write = (file, text) =>
 module.exports = function ({ skip = [], add = [], output = null, prepend = !output } = {}) {
   const shim = new Set()
   const addShim = shim.add.bind(shim)
+  let optimize = async (i) => i
 
   return {
+    /**
+     * Detect used methods, source remains unchanged
+     * @param {ModuleInfo} moduleInfo
+     * @return {null}
+     */
+    buildStart ({ plugins }) {
+      const terser = plugins.find(plugin => plugin.name === 'terser')
+      if (terser) {
+        optimize = async (code) => (await terser.renderChunk(code, null, {})).code
+      }
+    },
     /**
      * Detect used methods, source remains unchanged
      * @param {ModuleInfo} moduleInfo
@@ -60,7 +72,7 @@ module.exports = function ({ skip = [], add = [], output = null, prepend = !outp
         .sort()
       if (shims.some(needsCommon)) shims.unshift(index.common)
       const code = wrap(await Promise.all(shims.map(read)))
-      if (output) await write(output, code)
+      if (output) await write(output, await optimize(code))
       return prepend ? code : null
     }
   }
