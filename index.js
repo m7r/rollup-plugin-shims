@@ -16,12 +16,13 @@ const toId = (str) => String(str)
   .replace(/(.prototype.|[._])/g, '-')
   .replace(/(.)([A-Z])/g, '$1-$2')
   .toLowerCase()
-const extractId = (accum, comment) => {
-  const match = comment.value.match(/shims skip (.+)/)
-  return match ? accum.concat(...match[1].split(' ').map(toId)) : accum
+const extract = (regExp) => (accum, comment) => {
+  const match = comment.value.match(regExp)
+  return match ? accum.concat(...match[1].split(' ')) : accum
 }
 const exclude = (skipped) =>
   (name) => typeof name === 'string' && !skipped.some((id) => name.includes(id))
+const getFrom = (items) => (id) => items.find((name) => name.includes(id))
 const needsCommon = (key) => index.needsCommon[key]
 const readFile = promisify(fs.readFile)
 const read = (file) =>
@@ -31,10 +32,9 @@ const read = (file) =>
  * Prepend bundle with shims for used functions
  * @param {string[]?} skip Omit shim for this methods
  */
-module.exports = function (skip = []) {
+module.exports = function ({ skip = [], add = [] } = {}) {
   const shim = new Set()
-  const add = shim.add.bind(shim)
-  const skipedIds = skip.map(toId)
+  const addShim = shim.add.bind(shim)
   const comments = []
 
   return {
@@ -50,7 +50,7 @@ module.exports = function (skip = []) {
           toArray(
             get(index, 'staticMethods', node.object.name, node.property.name) ||
             get(index, 'instanceMethods', node.property.name)
-          ).forEach(add)
+          ).forEach(addShim)
         } }
       )
       return null
@@ -60,7 +60,8 @@ module.exports = function (skip = []) {
      * @returns {Promise<string>}
      */
     intro () {
-      const skipped = comments.reduce(extractId, skipedIds)
+      comments.reduce(extract(/shims add (.+)/), add).map(toId).map((getFrom(index.files))).forEach(addShim)
+      const skipped = comments.reduce(extract(/shims skip (.+)/), skip).map(toId)
       const shims = Array.from(shim.values())
         .filter(exclude(skipped))
         .sort()

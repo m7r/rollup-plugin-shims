@@ -23,13 +23,25 @@ export default {
   },
   plugins: [
     shims(
-      // optional array shims to skip
-      // for example to exclude a not required instance method
-      ['array.includes']
+      // optional config
+      {
+        skip: ['array.includes'],  // optional: exclude a not required instance method
+        add: ['string.replaceAll'] // optional: add a method even if not used in code
+      }
     )
   ]
 }
 ```
+
+In code file shims could be included with comments
+```js
+// shims add string.replaceAll Object.entries
+```
+or excluded
+```js
+// shims skip array.includes
+```
+Use each an a seperate comment
 
 ### Not included shims
 

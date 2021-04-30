@@ -45,10 +45,17 @@ const map = {
   }
 }
 
+const getDeepValues = (obj) =>
+  typeof obj === 'object'
+    ? Object.values(obj).map(getDeepValues).flat(Infinity)
+    : obj
+
 const index = (accum, key) => {
   accum[key] = true
   return accum
 }
+
+map.files = getDeepValues(map)
 
 map.needsCommon = [
   map.instanceMethods.copyWithin,
