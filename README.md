@@ -2,6 +2,11 @@
 
 Add shims to use some ES2015+ methods in a ES5 environment
 
+## Version 2 breaking changes
+
+- options are passed as object
+- comments are no longer supported to skip individual shims
+
 ### Installation
 
 ```shell
@@ -32,16 +37,6 @@ export default {
   ]
 }
 ```
-
-In code file shims could be included with comments
-```js
-// shims add string.replaceAll Object.entries
-```
-or excluded
-```js
-// shims skip array.includes
-```
-Use each an a seperate comment
 
 ### Not included shims
 

@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 const { promisify } = require('util')
-const { parse } = require('acorn')
 const { simple } = require('acorn-walk')
 const index = require('./shims/index.js')
 
@@ -16,10 +15,6 @@ const toId = (str) => String(str)
   .replace(/(.prototype.|[._])/g, '-')
   .replace(/(.)([A-Z])/g, '$1-$2')
   .toLowerCase()
-const extract = (regExp) => (accum, comment) => {
-  const match = comment.value.match(regExp)
-  return match ? accum.concat(...match[1].split(' ')) : accum
-}
 const exclude = (skipped) =>
   (name) => typeof name === 'string' && !skipped.some((id) => name.includes(id))
 const getFrom = (items) => (id) => items.find((name) => name.includes(id))
@@ -32,20 +27,19 @@ const read = (file) =>
  * Prepend bundle with shims for used functions
  * @param {string[]?} skip Omit shim for this methods
  */
-module.exports = function ({ skip = [], add = [] } = {}) {
+module.exports = function ({ skip = [], add = [], onlyShim = false } = {}) {
   const shim = new Set()
   const addShim = shim.add.bind(shim)
-  const comments = []
 
   return {
     /**
      * Detect used methods, source remains unchanged
-     * @param {string} source
+     * @param {ModuleInfo} moduleInfo
      * @return {null}
      */
-    transform (source) {
+    moduleParsed (moduleInfo) {
       simple(
-        parse(source, { sourceType: 'module', ecmaVersion: 9, onComment: comments }),
+        moduleInfo.ast,
         { MemberExpression (node) {
           toArray(
             get(index, 'staticMethods', node.object.name, node.property.name) ||
@@ -60,10 +54,9 @@ module.exports = function ({ skip = [], add = [] } = {}) {
      * @returns {Promise<string>}
      */
     intro () {
-      comments.reduce(extract(/shims add (.+)/), add).map(toId).map((getFrom(index.files))).forEach(addShim)
-      const skipped = comments.reduce(extract(/shims skip (.+)/), skip).map(toId)
+      add.map(toId).map((getFrom(index.files))).forEach(addShim)
       const shims = Array.from(shim.values())
-        .filter(exclude(skipped))
+        .filter(exclude(skip.map(toId)))
         .sort()
       if (shims.some(needsCommon)) shims.unshift(index.common)
       return Promise.all(shims.map(read)).then(wrap)

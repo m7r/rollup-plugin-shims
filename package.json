@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-shims",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Shim only used ES2015+ features in ES5 environment",
   "module": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/m7r/rollup-plugin-shims#readme",
   "devDependencies": {
+    "acorn": "^8.2.2",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
     "chai-autoload-plugins": "^0.1.0",
@@ -37,13 +38,12 @@
     "standard": "^12.0.1"
   },
   "dependencies": {
-    "acorn": "^6.4.1",
-    "acorn-walk": "^6.2.0"
+    "acorn-walk": "^8.1.0"
   },
   "peerDependencies": {
     "rollup": ">0.60.0"
   },
   "engines": {
-    "node": ">8.0"
+    "node": ">14.0"
   }
 }
