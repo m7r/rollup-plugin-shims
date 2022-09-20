@@ -52,12 +52,14 @@ module.exports = function ({ skip = [], add = [], output = null, prepend = !outp
     moduleParsed (moduleInfo) {
       walk.simple(
         moduleInfo.ast,
-        { MemberExpression (node) {
-          toArray(
-            get(index, 'staticMethods', node.object.name, node.property.name) ||
-            get(index, 'instanceMethods', node.property.name)
-          ).forEach(addShim)
-        } }
+        {
+          MemberExpression (node) {
+            toArray(
+              get(index, 'staticMethods', node.object.name, node.property.name) ||
+              get(index, 'instanceMethods', node.property.name)
+            ).forEach(addShim)
+          }
+        }
       )
       return null
     },
