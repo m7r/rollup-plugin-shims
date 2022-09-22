@@ -1,9 +1,20 @@
 {
+  "plugins": [
+    "es5"
+  ],
+  "extends": [
+    "plugin:es5/no-es2015"
+  ],
   "rules": {
-    "space-unary-ops": 0
+    "space-unary-ops": 0,
+    "es5/no-es6-methods": 0,
+    "es5/no-es6-static-methods": 0
   },
   "globals": {
     "assert": true,
     "noProto": true
+  },
+  "env": {
+    "mocha": false
   }
 }

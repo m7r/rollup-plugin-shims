@@ -1,6 +1,13 @@
 {
+  "plugins": [
+    "es5"
+  ],
+  "extends": [
+    "plugin:es5/no-es2015"
+  ],
   "rules": {
     "max-len": 0,
+    "no-var": 0,
     "no-extend-native": 0,
     "no-self-compare": 0,
     "eqeqeq": 0
@@ -13,5 +20,8 @@
     "toLength": true,
     "toStr": true,
     "MAX_SAFE_INTEGER": true
+  },
+  "env": {
+    "mocha": false
   }
 }
