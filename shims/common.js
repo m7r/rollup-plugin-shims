@@ -9,7 +9,7 @@ function callable (fn) {
 }
 
 function coerceObject (obj) {
-  if (obj == null) throw new TypeError('Cannot convert undefined or null to object')
+  if (obj == null) throw new TypeError(obj + ' is not an object')
   return Object(obj)
 }
 
