@@ -1,3 +1,4 @@
+/* eslint-disable es5/no-block-scoping, es5/no-arrow-functions, es5/no-es6-methods */
 const map = {
   common: 'common.js',
   instanceMethods: {
@@ -17,7 +18,8 @@ const map = {
     flat: 'es2019/array-flat.js',
     flatMap: 'es2019/array-flat.js',
     matchAll: 'es2020/string-match-all.js',
-    replaceAll: 'es2021/string-replace-all.js'
+    replaceAll: 'es2021/string-replace-all.js',
+    at: ['es2022/array-at.js', 'es2022/string-at.js']
   },
   staticMethods: {
     Array: {
@@ -40,7 +42,8 @@ const map = {
       is: 'es2015/object-is.js',
       values: 'es2017/object-values.js',
       entries: 'es2017/object-entries.js',
-      fromEntries: 'es2019/object-from-entries.js'
+      fromEntries: 'es2019/object-from-entries.js',
+      hasOwn: 'es2022/object-has-Own.js'
     }
   }
 }
