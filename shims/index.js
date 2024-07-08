@@ -10,8 +10,8 @@ const map = {
     repeat: "es2015/string-repeat.js",
     startsWith: "es2015/string-starts-with.js",
     endsWith: "es2015/string-ends-with.js",
-    padStart: "es2017/string-pad-start.js",
-    padEnd: "es2017/string-pad-end.js",
+    padStart: ["es2015/string-repeat.js", "es2017/string-pad-start.js"],
+    padEnd: ["es2015/string-repeat.js", "es2017/string-pad-end.js"],
     trimStart: "es2019/string-trim-start.js",
     trimEnd: "es2019/string-trim-end.js",
     flat: "es2019/array-flat.js",
@@ -69,6 +69,7 @@ map.needsCommon = [
   map.instanceMethods.flatMap,
   map.instanceMethods.matchAll,
   map.instanceMethods.replaceAll,
+  map.instanceMethods.at,
   map.staticMethods.Array.from,
   map.staticMethods.Number.MAX_SAFE_INTEGER,
   map.staticMethods.Number.MIN_SAFE_INTEGER,
@@ -76,6 +77,7 @@ map.needsCommon = [
   map.staticMethods.Object.assign,
   map.staticMethods.Object.values,
   map.staticMethods.Object.entries,
+  map.staticMethods.Object.hasOwn,
 ].reduce(index, {});
 
 module.exports = map;
