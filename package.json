@@ -5,8 +5,8 @@
   "module": "index.js",
   "scripts": {
     "build:spec": "node build-shim-spec.js > spec.js",
-    "test": "mocha -r chai/register-expect -r chai-autoload-plugins -R min '*.spec.js'",
-    "lint": "eslint '**.js'"
+    "test": "mocha -r ./node_modules/chai/register-expect.js -r chai-autoload-plugins -R min '*.spec.js'",
+    "lint": "eslint && prettier -c ."
   },
   "repository": {
     "type": "git",
@@ -30,16 +30,17 @@
   },
   "homepage": "https://github.com/m7r/rollup-plugin-shims#readme",
   "devDependencies": {
+    "@eslint/js": "^9.6.0",
     "acorn": "^8.8.0",
     "chai": "4.3.4",
     "chai-as-promised": "^7.1.1",
     "chai-autoload-plugins": "^0.1.0",
-    "eslint": "^8.23.1",
-    "eslint-plugin-es5": "^1.5.0",
+    "eslint": "^9.6.0",
     "glob": "^8.0.3",
+    "globals": "^15.8.0",
     "mocha": "^10.0.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "standard": "^17.0.0"
+    "prettier": "3.3.2",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {
     "acorn-walk": "^8.2.0"
