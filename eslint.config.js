@@ -4,9 +4,20 @@ const globals = require("globals");
 module.exports = [
   pluginJs.configs.recommended,
   {
-    files: ["plugin/**.js", "shims/index.js", "build.js"],
+    files: [
+      "index*.js",
+      "shims/index.js",
+      "build*.js",
+      "*.config.js",
+      "wallaby.js",
+    ],
     languageOptions: {
-      globals: globals.node,
+      globals: {
+        ...globals.node,
+        describe: false,
+        it: false,
+        expect: false,
+      },
     },
   },
   {

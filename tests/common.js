@@ -1,4 +1,3 @@
-/* eslint-disable  no-unused-vars */
 var noProto = Object.create(null);
 noProto.a = 1;
 

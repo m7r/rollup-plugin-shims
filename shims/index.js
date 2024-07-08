@@ -1,4 +1,3 @@
-/* eslint-disable es5/no-block-scoping, es5/no-arrow-functions, es5/no-es6-methods */
 const map = {
   common: "common.js",
   instanceMethods: {
