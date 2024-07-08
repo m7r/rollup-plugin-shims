@@ -17,27 +17,27 @@ npm install --save-dev rollup-plugin-shims
 
 ```js
 // rollup.config.js
-import shims from 'rollup-plugin-shims';
+import shims from "rollup-plugin-shims";
 
 export default {
-  input: 'main.js',
+  input: "main.js",
   output: {
-    file: 'bundle.js',
-    format: 'iife',
-    name: 'MyModule'
+    file: "bundle.js",
+    format: "iife",
+    name: "MyModule",
   },
   plugins: [
     shims(
       // optional config
       {
-        skip: ['array.includes'],   // optional: exclude a not required instance method
-        add: ['string.replaceAll'], // optional: add a method even if not used in code
-        output: 'dist/shim.js',     // optional: write shims to separate file [Default: null]
-        prepend: true,              // optional: prepend shims to rollup output [Default: !output]
-      }
-    )
-  ]
-}
+        skip: ["array.includes"], // optional: exclude a not required instance method
+        add: ["string.replaceAll"], // optional: add a method even if not used in code
+        output: "dist/shim.js", // optional: write shims to separate file [Default: null]
+        prepend: true, // optional: prepend shims to rollup output [Default: !output]
+      },
+    ),
+  ],
+};
 ```
 
 ### Not included shims
@@ -47,26 +47,27 @@ Please consider to use a more profound soltution like core-js.
 
 #### ES2015
 
-  - Promise
-  - Symbol
-  - Reflect
-  - Proxy
-  - Map / WeakMap
-  - Set / WeakSet
-  - Array.prototype.keys()
-  - Array.prototype.values()
-  - Array.prototype.entries()
-  - String.prototype.anchor() and other HTML generators
+- Promise
+- Symbol
+- Reflect
+- Proxy
+- Map / WeakMap
+- Set / WeakSet
+- Array.prototype.keys()
+- Array.prototype.values()
+- Array.prototype.entries()
+- String.prototype.anchor() and other HTML generators
 
 #### ES2017
-  
-  - Object.getOwnPropertyDescriptors()
+
+- Object.getOwnPropertyDescriptors()
 
 #### ES2020
 
-  - import()
-  - BigInt
-  - globalThis
+- import()
+- BigInt
+- globalThis
 
 ### License
+
 MIT

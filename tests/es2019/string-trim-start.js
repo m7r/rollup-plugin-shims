@@ -1,4 +1,1 @@
-assert(
-  '  A  '.trimStart() === 'A  ',
-  'String.prototype.trimStart'
-)
+assert("  A  ".trimStart() === "A  ", "String.prototype.trimStart");

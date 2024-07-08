@@ -1,4 +1,1 @@
-assert(
-  Number.parseInt === parseInt,
-  'Number.parseInt'
-)
+assert(Number.parseInt === parseInt, "Number.parseInt");

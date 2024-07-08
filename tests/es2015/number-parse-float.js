@@ -1,4 +1,1 @@
-assert(
-  Number.parseFloat === parseFloat,
-  'Number.parseFloat'
-)
+assert(Number.parseFloat === parseFloat, "Number.parseFloat");

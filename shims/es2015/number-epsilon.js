@@ -1,3 +1,3 @@
 if (!Number.EPSILON) {
-  Number.EPSILON = Math.pow(2, -52)
+  Number.EPSILON = Math.pow(2, -52);
 }

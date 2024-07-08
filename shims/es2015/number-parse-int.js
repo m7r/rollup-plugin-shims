@@ -1,3 +1,3 @@
 if (!Number.parseInt) {
-  Number.parseInt = parseInt
+  Number.parseInt = parseInt;
 }

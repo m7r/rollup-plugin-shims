@@ -1,3 +1,3 @@
 if (!Number.parseFloat) {
-  Number.parseFloat = parseFloat
+  Number.parseFloat = parseFloat;
 }
