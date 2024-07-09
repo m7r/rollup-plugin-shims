@@ -49,7 +49,7 @@ const map = {
       entries: "es2017/object-entries.js",
       fromEntries: "es2019/object-from-entries.js",
       hasOwn: "es2022/object-has-Own.js",
-      groupBy: "es2024/object-group-by",
+      groupBy: "es2024/object-group-by.js",
     },
   },
 };
