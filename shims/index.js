@@ -49,6 +49,7 @@ const map = {
       entries: "es2017/object-entries.js",
       fromEntries: "es2019/object-from-entries.js",
       hasOwn: "es2022/object-has-Own.js",
+      groupBy: "es2024/object-group-by",
     },
   },
 };
@@ -90,6 +91,7 @@ map.needsCommon = [
   map.staticMethods.Object.values,
   map.staticMethods.Object.entries,
   map.staticMethods.Object.hasOwn,
+  map.staticMethods.Object.groupBy,
 ].reduce(index, {});
 
 module.exports = map;
