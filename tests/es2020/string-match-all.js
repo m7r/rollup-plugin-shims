@@ -40,5 +40,5 @@ assert.throws(
     "1111a2b3cccc".matchAll(/(\d)(\D)/);
   },
   TypeError,
-  "String.prototype.matchAll(/.+/)"
+  "String.prototype.matchAll(/(d)(D)/)"
 );
