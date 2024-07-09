@@ -1,3 +1,5 @@
+// import { coerceObject, toStr } from "../common.js";
+
 if (!String.prototype.matchAll) {
   String.prototype.matchAll = function (regExp) {
     var O = coerceObject(this);

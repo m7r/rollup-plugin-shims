@@ -1,3 +1,5 @@
+// import { callable, coerceObject, toLength } from "../common.js";
+
 if (!Array.prototype.toSorted) {
   Array.prototype.toSorted = function toSorted(comparator) {
     if (comparator !== undefined && !callable(comparator)) {

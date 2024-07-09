@@ -1,6 +1,3 @@
-*.config.js
-*.spec.js
-spec.js
-wallaby.js
-build-shim-spec.js
+*config*
+*test.js
 tests

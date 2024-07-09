@@ -1,3 +1,5 @@
+// import { coerceObject } from "../common.js";
+
 if (!Object.entries) {
   Object.entries = function entries(O) {
     var obj = coerceObject(O);

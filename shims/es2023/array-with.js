@@ -1,3 +1,5 @@
+// import { coerceObject, toLength, toIntegerOrInfinity } from "../common.js";
+
 if (!Array.prototype.with) {
   Array.prototype.with = function With(index, value) {
     var O = coerceObject(this);

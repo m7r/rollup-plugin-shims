@@ -1,3 +1,5 @@
+// import { callable, coerceObject } from "../common.js";
+
 if (!Array.prototype.findIndex) {
   Array.prototype.findIndex = function findIndex(predicate /*, thisArg */) {
     if (!callable(predicate)) {

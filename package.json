@@ -1,11 +1,15 @@
 {
   "name": "rollup-plugin-shims",
-  "version": "2.2.2",
-  "description": "Shim only used ES2015+ features in ES5 environment",
-  "module": "index.js",
+  "version": "3.0.0",
+  "description": "Shim only used ES2015+ features in ES5+ environment",
+  "main": "plugin/index.js",
+  "type": "module",
+  "bin": {
+    "build-shim": "./build.js"
+  },
   "scripts": {
-    "build:spec": "node build-shim-spec.js > spec.js",
-    "test": "mocha -r ./node_modules/chai/register-expect.js -r chai-autoload-plugins -R min '*.spec.js'",
+    "build:test": "npx build-shim --tests --output=test.js",
+    "test": "node --test",
     "lint": "eslint && prettier -c ."
   },
   "repository": {
@@ -33,24 +37,21 @@
   "homepage": "https://github.com/m7r/rollup-plugin-shims#readme",
   "devDependencies": {
     "@eslint/js": "^9.6.0",
-    "acorn": "^8.8.0",
-    "chai": "4.3.4",
-    "chai-as-promised": "^7.1.1",
-    "chai-autoload-plugins": "^0.1.0",
+    "acorn": "^8.12.0",
     "eslint": "^9.6.0",
-    "glob": "^8.0.3",
     "globals": "^15.8.0",
-    "mocha": "^10.0.0",
-    "prettier": "3.3.2",
-    "rollup-plugin-terser": "^7.0.2"
+    "prettier": "3.3.2"
   },
   "dependencies": {
-    "acorn-walk": "^8.2.0"
+    "@rollup/pluginutils": "^5.1.0",
+    "argv-utils": "^1.0.2",
+    "estree-walker": "^3.0.3",
+    "magic-string": "^0.30.10"
   },
   "peerDependencies": {
-    "rollup": ">0.60.0"
+    "rollup": ">2.77.0"
   },
   "engines": {
-    "node": ">14.0"
+    "node": ">20.11"
   }
 }

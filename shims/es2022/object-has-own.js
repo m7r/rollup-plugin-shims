@@ -1,3 +1,5 @@
+// import { coerceObject } from "../common.js";
+
 if (!Object.hasOwn) {
   Object.hasOwn = function hasOwn(obj, prop) {
     var O = coerceObject(obj);

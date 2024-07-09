@@ -1,3 +1,5 @@
+// import { coerceObject } from "../common.js";
+
 if (!String.prototype.at) {
   String.prototype.at = function at(index) {
     var S = String(coerceObject(this));

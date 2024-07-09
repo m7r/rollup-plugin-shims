@@ -1,3 +1,5 @@
+// import { coerceObject, toLength } from "../common.js";
+
 if (!Array.prototype.toReversed) {
   Array.prototype.toReversed = function toReversed() {
     var O = coerceObject(this);

@@ -1,3 +1,5 @@
+// import { callable, coerceObject, toLength } from "../common.js";
+
 if (!Array.from) {
   Array.from = function from(arrayLike /* , mapFn, thisArg */) {
     var C = this;

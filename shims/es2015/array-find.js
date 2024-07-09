@@ -1,3 +1,5 @@
+// import { callable, coerceObject } from "../common.js";
+
 if (!Array.prototype.find) {
   Array.prototype.find = function find(predicate /*, thisArg */) {
     if (!callable(predicate)) {

@@ -1,3 +1,5 @@
+// import { coerceObject, toLength } from "../common.js";
+
 if (!Array.prototype.toSpliced) {
   Array.prototype.toSpliced = function toSpliced(start, deleteCount) {
     var O = coerceObject(this);

@@ -1,3 +1,5 @@
+// import { coerceObject, toLength } from "../common.js";
+
 if (!Array.prototype.at) {
   Array.prototype.at = function at(index) {
     var O = coerceObject(this);

@@ -1,3 +1,5 @@
+// import { coerceObject, toStr } from "../common.js";
+
 if (!String.prototype.replaceAll) {
   String.prototype.replaceAll = function (searchValue, replaceValue) {
     var O = coerceObject(this);

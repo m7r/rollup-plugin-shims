@@ -1,4 +1,5 @@
-const map = {
+export default {
+  root: import.meta.dirname,
   common: "common.js",
   instanceMethods: {
     codePointAt: "es2015/string-code-point-at.js",
@@ -48,50 +49,8 @@ const map = {
       values: "es2017/object-values.js",
       entries: "es2017/object-entries.js",
       fromEntries: "es2019/object-from-entries.js",
-      hasOwn: "es2022/object-has-Own.js",
+      hasOwn: "es2022/object-has-own.js",
       groupBy: "es2024/object-group-by.js",
     },
   },
 };
-
-const getDeepValues = (obj) =>
-  typeof obj === "object" ?
-    Object.values(obj).map(getDeepValues).flat(Infinity)
-  : obj;
-
-const index = (accum, key) => {
-  accum[key] = true;
-  return accum;
-};
-
-map.files = getDeepValues(map);
-
-map.needsCommon = [
-  map.instanceMethods.copyWithin,
-  map.instanceMethods.fill,
-  map.instanceMethods.find,
-  map.instanceMethods.findIndex,
-  map.instanceMethods.includes,
-  map.instanceMethods.flat,
-  map.instanceMethods.flatMap,
-  map.instanceMethods.matchAll,
-  map.instanceMethods.replaceAll,
-  map.instanceMethods.at,
-  map.instanceMethods.findLast,
-  map.instanceMethods.findLastIndex,
-  map.instanceMethods.toReversed,
-  map.instanceMethods.toSorted,
-  map.instanceMethods.toSpliced,
-  map.instanceMethods.with,
-  map.staticMethods.Array.from,
-  map.staticMethods.Number.MAX_SAFE_INTEGER,
-  map.staticMethods.Number.MIN_SAFE_INTEGER,
-  map.staticMethods.Number.isSafeInteger,
-  map.staticMethods.Object.assign,
-  map.staticMethods.Object.values,
-  map.staticMethods.Object.entries,
-  map.staticMethods.Object.hasOwn,
-  map.staticMethods.Object.groupBy,
-].reduce(index, {});
-
-module.exports = map;

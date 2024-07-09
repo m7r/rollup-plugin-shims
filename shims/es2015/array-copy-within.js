@@ -1,3 +1,5 @@
+// import { coerceObject } from "../common.js";
+
 if (!Array.prototype.copyWithin) {
   Array.prototype.copyWithin = function copyWithin(target, start /* , end */) {
     var O = coerceObject(this);

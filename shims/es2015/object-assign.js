@@ -1,3 +1,5 @@
+// import { coerceObject } from "../common.js";
+
 if (!Object.assign) {
   Object.assign = function assign(target) {
     target = coerceObject(target);

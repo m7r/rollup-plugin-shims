@@ -1,27 +1,16 @@
-const pluginJs = require("@eslint/js");
-const globals = require("globals");
+import pluginJs from "@eslint/js";
+import globals from "globals";
 
-module.exports = [
+export default [
   pluginJs.configs.recommended,
   {
-    files: [
-      "index*.js",
-      "shims/index.js",
-      "build*.js",
-      "*.config.js",
-      "wallaby.js",
-    ],
+    files: ["plugin/*.js", "shims/index.js", "build.js", "*.config.js"],
     languageOptions: {
-      globals: {
-        ...globals.node,
-        describe: false,
-        it: false,
-        expect: false,
-      },
+      globals: globals.node,
     },
   },
   {
-    files: ["shims/common.js", "tests/common.js"],
+    files: ["shims/common.js", "tests/common.js", "test.js"],
     languageOptions: {
       ecmaVersion: 5,
       sourceType: "script",
