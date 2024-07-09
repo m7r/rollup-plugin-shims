@@ -1,6 +1,6 @@
 if (!String.prototype.at) {
   String.prototype.at = function at(index) {
-    var S = toStr(coerceObject(this));
+    var S = String(coerceObject(this));
     var len = S.length;
     var relativeIndex = index >> 0;
     var k = relativeIndex >= 0 ? relativeIndex : len + relativeIndex;
