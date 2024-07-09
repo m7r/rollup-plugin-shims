@@ -26,7 +26,6 @@ if (!Array.prototype.includes) {
           searchElement !== searchElement && currentElement !== currentElement
         )
       ) {
-        // NaN !== NaN
         return true;
       }
       k++;
