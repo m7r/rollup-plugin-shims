@@ -51,6 +51,7 @@ Please consider to use a more profound soltution like core-js.
 - Symbol
 - Reflect
 - Proxy
+- Class
 - Map / WeakMap
 - Set / WeakSet
 - Array.prototype.keys()
@@ -67,6 +68,15 @@ Please consider to use a more profound soltution like core-js.
 - import()
 - BigInt
 - globalThis
+
+#### ES2022
+
+- RegExp /d
+- error.cause
+
+### ES2024
+
+- Temporal
 
 ### License
 
