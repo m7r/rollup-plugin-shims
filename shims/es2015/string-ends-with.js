@@ -1,13 +1,12 @@
 if (!String.prototype.endsWith) {
   String.prototype.endsWith = function endsWith(searchStr /*, position */) {
-    var position = arguments[1];
-    if (!(position < this.length)) {
-      position = this.length;
+    var start = arguments[1];
+    if (!(start < this.length)) {
+      start = this.length;
     } else {
-      position |= 0;
+      start |= 0;
     }
-    return (
-      this.substr(position - searchStr.length, searchStr.length) === searchStr
-    );
+    start -= searchStr.length;
+    return this.slice(start, start + searchStr.length) === searchStr;
   };
 }
