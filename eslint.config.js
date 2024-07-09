@@ -45,6 +45,7 @@ module.exports = [
         coerceObject: "readonly",
         toLength: "readonly",
         toStr: "readonly",
+        toIntegerOrInfinity: "readonly",
         MAX_SAFE_INTEGER: "readonly",
         assert: "writable",
         noProto: "writable",

@@ -15,3 +15,14 @@ function coerceObject(obj) {
 function toLength(len) {
   return len > MAX_SAFE_INTEGER ? MAX_SAFE_INTEGER : len | 0;
 }
+
+function toIntegerOrInfinity(value) {
+  var number = Number(value);
+  if (isNaN(number) || number === 0) {
+    return 0;
+  }
+  if (!isFinite(number)) {
+    return number;
+  }
+  return number < 0 ? -Math.floor(-number) : Math.floor(number);
+}
