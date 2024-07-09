@@ -7,7 +7,10 @@ if (!String.prototype.replaceAll) {
         throw new TypeError("`.replaceAll` does not allow non-global regexes");
       }
     } else {
-      searchValue = new RegExp(String(searchValue), "g");
+      searchValue = new RegExp(
+        String(searchValue).replace(/([()[{*+.$^\\|?])/g, "\\$1"),
+        "g"
+      );
     }
 
     if (typeof replaceValue !== "function") {

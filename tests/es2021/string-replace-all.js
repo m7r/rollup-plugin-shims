@@ -14,6 +14,11 @@ assert(
 );
 
 assert(
+  "b.b.b.b.b".replaceAll(".", "a") === "babababab",
+  'String.prototype.replaceAll(".", "a")'
+);
+
+assert(
   "b.b.b.b.b".replaceAll(/\./g, "a") === "babababab",
   'String.prototype.replaceAll(/\\./g, "a")'
 );
