@@ -21,13 +21,13 @@ if (!Array.prototype.fill) {
     var relativeEnd = end === undefined ? len : end >> 0;
 
     // Step 11.
-    var final =
+    var finalEnd =
       relativeEnd < 0 ?
         Math.max(len + relativeEnd, 0)
       : Math.min(relativeEnd, len);
 
     // Step 12.
-    while (k < final) {
+    while (k < finalEnd) {
       O[k] = value;
       k++;
     }

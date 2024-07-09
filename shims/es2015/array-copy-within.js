@@ -26,13 +26,13 @@ if (!Array.prototype.copyWithin) {
     var end = arguments[2];
     var relativeEnd = end === undefined ? len : end >> 0;
 
-    var final =
+    var finalEnd =
       relativeEnd < 0 ?
         Math.max(len + relativeEnd, 0)
       : Math.min(relativeEnd, len);
 
     // Step 15.
-    var count = Math.min(final - from, len - to);
+    var count = Math.min(finalEnd - from, len - to);
 
     // Steps 16-17.
     var direction = 1;
