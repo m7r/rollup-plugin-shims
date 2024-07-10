@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-shims",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Shim only used ES2015+ features in ES5 environment",
   "module": "index.js",
   "scripts": {
