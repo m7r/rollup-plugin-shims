@@ -11,11 +11,11 @@ const fakeRollup = {
 };
 
 const id = resolve("src/index.js");
-const code = 'String(4).padStart(3, "0")';
+const code = 'Number(12).toString(16).padStart(2, "0");';
 const modified = `import "${index.root}/es2015/string-repeat.js";\nimport "${index.root}/es2017/string-pad-start.js";\n${code}`;
 const map = {
   mappings:
-    ";;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC",
+    ";;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC",
 };
 const ast = fakeRollup.parse(modified, { allowReturnOutsideFunction: true });
 

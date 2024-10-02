@@ -1,7 +1,9 @@
 export default {
+  __proto__: null,
   root: import.meta.dirname,
   common: "common.js",
   instanceMethods: {
+    __proto__: null,
     codePointAt: "es2015/string-code-point-at.js",
     copyWithin: "es2015/array-copy-within.js",
     fill: "es2015/array-fill.js",
@@ -28,11 +30,14 @@ export default {
     with: "es2023/array-with.js",
   },
   staticMethods: {
+    __proto__: null,
     Array: {
+      __proto__: null,
       from: "es2015/array-from.js",
       of: "es2015/array-of.js",
     },
     Number: {
+      __proto__: null,
       EPSILON: "es2015/number-epsilon.js",
       MAX_SAFE_INTEGER: "es2015/number-max-safe-integer.js",
       MIN_SAFE_INTEGER: "es2015/number-min-safe-integer.js",
@@ -44,6 +49,7 @@ export default {
       parseInt: "es2015/number-parse-int.js",
     },
     Object: {
+      __proto__: null,
       assign: "es2015/object-assign.js",
       is: "es2015/object-is.js",
       values: "es2017/object-values.js",
