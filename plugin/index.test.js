@@ -5,37 +5,33 @@ import { resolve } from "node:path";
 import { test } from "node:test";
 import { equal, deepEqual } from "node:assert/strict";
 
+const code = 'Number(12).toString(16).padStart(2, "0");';
+const mappings =
+  ";;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC";
+const import2015 = `import "${index.root}/es2015/string-repeat.js";\n`;
+const import2017 = `import "${index.root}/es2017/string-pad-start.js";\n`;
+const parseOptions = { allowReturnOutsideFunction: true };
+const id = resolve("src/index.js");
+
 const fakeRollup = {
   parse: (code, opts) =>
     parse(code, { ecmaVersion: 2023, sourceType: "module", ...opts }),
 };
 
-const id = resolve("src/index.js");
-const code = 'Number(12).toString(16).padStart(2, "0");';
-const modified = `import "${index.root}/es2015/string-repeat.js";\nimport "${index.root}/es2017/string-pad-start.js";\n${code}`;
-const map = {
-  mappings:
-    ";;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC",
-};
-const ast = fakeRollup.parse(modified, { allowReturnOutsideFunction: true });
-
 test("detect shim default settings", () => {
   const instance = plugin();
   const result = instance.transform.handler.call(fakeRollup, code, id);
-  deepEqual({ code: result.code, map: result.map }, { code: modified, map });
-  // compare only some ast properties, deepEqual fails here
-  equal(result.ast.start, ast.start);
-  equal(result.ast.end, ast.end);
-  equal(result.ast.body.at(1).raw, ast.body.at(1).raw);
-  equal(result.ast.body.at(2).raw, ast.body.at(2).raw);
-  equal(result.ast.body.at(2).start, ast.body.at(2).start);
-  equal(result.ast.body.at(-1).end, ast.body.at(-1).end);
+  const modified = import2015 + import2017 + code;
+  const ast = fakeRollup.parse(modified, parseOptions);
+  deepEqual(result, { code: modified, map: { mappings }, ast });
 });
 
 test("detect shim for es2015", () => {
   const instance = plugin({ ecmaVersion: 2015 });
   const result = instance.transform.handler.call(fakeRollup, code, id);
-  deepEqual(result.code, modified.replace(/^[^\n]+\n/, ""));
+  const modified = import2017 + code;
+  const ast = fakeRollup.parse(modified, parseOptions);
+  deepEqual(result, { code: modified, map: { mappings }, ast });
 });
 
 test("ignore shim if environment is newer", () => {
