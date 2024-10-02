@@ -5,7 +5,7 @@ import MagicString from "magic-string";
 import index from "../shims/index.js";
 
 const name = "shims";
-const version = "3.0.0";
+const version = "3.0.1";
 
 const getProp = (obj, key) => (obj != null ? obj[key] : obj);
 const get = (obj, ...args) => args.reduce(getProp, obj);
