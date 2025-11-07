@@ -1,4 +1,4 @@
-// import { coerceObject } from "../common.js";
+// import { coerceObject, has } from "../common.js";
 
 if (!Object.hasOwn) {
   Object.hasOwn = function hasOwn(obj, prop) {

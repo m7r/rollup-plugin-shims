@@ -1,4 +1,4 @@
-// import { coerceObject } from "../common.js";
+// import { coerceObject, has, enumerable } from "../common.js";
 
 if (!Object.values) {
   Object.values = function values(O) {

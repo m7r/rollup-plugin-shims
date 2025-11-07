@@ -1,4 +1,4 @@
-// import { coerceObject, toLength } from "../common.js";
+// import { coerceObject, toLength, toIntegerOrInfinity, MAX_SAFE_INTEGER } from "../common.js";
 
 if (!Array.prototype.toSpliced) {
   Array.prototype.toSpliced = function toSpliced(start, deleteCount) {

@@ -1,3 +1,5 @@
+// import { callable, coerceObject, toLength } from "../common.js";
+
 if (!Array.prototype.findLastIndex) {
   Array.prototype.findLastIndex = function findLastIndex(
     predicate /*, thisArg */

@@ -1,4 +1,4 @@
-// import { toLength, coerceObject, callable } from "../common.js";
+// import { toLength, coerceObject, callable, MAX_SAFE_INTEGER } from "../common.js";
 
 if (!Array.prototype.flat || !Array.prototype.flatMap) {
   var FlattenIntoArray = function FlattenIntoArray(
