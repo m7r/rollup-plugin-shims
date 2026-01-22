@@ -8,7 +8,7 @@ if (!Array.prototype.findLastIndex) {
       throw new TypeError("predicate must be a function");
     }
     var list = coerceObject(this);
-    var length = toLength(list.length);
+    var length = toLength(list.length) - 1;
     var thisArg = arguments[1];
     var value;
 
